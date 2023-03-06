@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, reactive, ref, watchEffect } from "vue";
+
 import type { Input } from "@nordhealth/components";
 
 // helper for demo purposes
@@ -49,7 +50,7 @@ function handleSubmit() {
 
 <template>
   <nord-card padding="l">
-    <h2 slot="header">Sign in to Nord</h2>
+    <h2 slot="header">Consultar microfono</h2>
     <form action="#" @submit.prevent="handleSubmit">
       <nord-stack>
         <nord-input
