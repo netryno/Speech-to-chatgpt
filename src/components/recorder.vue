@@ -206,9 +206,9 @@
           @click.native="stopRecorder"/>
       </div>
 
-      <div class="ar-recorder__records-limit" v-if="attempts">Attempts: {{attemptsLeft}}/{{attempts}}</div>
+      <div class="ar-recorder__records-limit" v-if="attempts">Intentos: {{attemptsLeft}}/{{attempts}}</div>
       <div class="ar-recorder__duration">{{recordedTime}}</div>
-      <div class="ar-recorder__time-limit" v-if="time">Record duration is limited: {{time}}m</div>
+      <div class="ar-recorder__time-limit" v-if="time">Maximo tiempo: {{time}}m</div>
 
       <div class="ar-records">
         <div
@@ -221,7 +221,7 @@
               class="ar__rm"
               v-if="record.id === selected.id"
               @click="removeRecord(idx)">&times;</div>
-            <div class="ar__text">Record {{idx + 1}}</div>
+            <div class="ar__text">Audio {{idx + 1}}</div>
             <div class="ar__text">{{record.duration}}</div>
 
             <downloader
@@ -305,6 +305,11 @@
           this.failedUpload && this.failedUpload(msg.response)
         }
       })
+
+      this.$eventBus.$on('add-recc', (recc) => {
+        this.recordList.push(recc)
+      })
+
     },
     beforeDestroy () {
       this.stopRecorder()

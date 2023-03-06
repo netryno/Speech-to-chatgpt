@@ -1,14 +1,15 @@
 {
   "name": "vue-audio-recorder",
-  "description": "Audio recorder for Vue.js. It allows to create, play, download and store records on a server",
+  "description": "Custom for use, backend https://github.com/nateshmbhat/pyttsx3",
   "version": "3.0.1",
-  "author": "Gennady Grishkovtsov <grishkovelli@gmail.com>",
+  "author": "Gennady Grishkovtsov, custom by Paul",
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --env.NODE_ENV=development --mode development --open --hot --https",
     "build": "webpack --env.NODE_ENV=production --mode production --progress --hide-modules"
   },
   "dependencies": {
+    "@babel/runtime": "^7.21.0",
     "lamejs": "^1.2.0"
   },
   "browserslist": [
@@ -17,9 +18,12 @@
     "not ie <= 8"
   ],
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.21.0",
     "axios": "^0.18.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-stage-3": "^6.24.1",
     "cross-env": "^5.0.5",

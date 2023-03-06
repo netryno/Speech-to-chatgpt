@@ -10,7 +10,7 @@
     <div class="toggle" @click="toggle">TOGGLE</div>
 
     <audio-recorder v-if="showRecorder"
-      upload-url="some url"
+      upload-url="http://localhost:8003/process_audio"
       filename="ninja"
       format="wav"
       :attempts="3"

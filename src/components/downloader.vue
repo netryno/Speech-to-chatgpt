@@ -12,7 +12,6 @@
 
 <script>
   import IconButton from './icon-button'
-
   export default {
     props: {
       record    : { type: Object },
@@ -22,17 +21,16 @@
       IconButton
     },
     methods: {
-      download () {
+      download(){
         if (!this.record.url) {
           return
         }
-
         const type = this.record.blob.type.split('/')[1]
         const link = document.createElement('a')
         link.href = this.record.url
         link.download = `${this.filename}.${type}`
         link.click()
-      }
+      },
     }
   }
 </script>
