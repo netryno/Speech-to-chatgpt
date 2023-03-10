@@ -1,7 +1,7 @@
 ## Speech to chatgpt (FrontEnd)
 
 
-Custom project to consume X project service, Send audio prompt, which is processed in chagpt and the response is added to the player.
+Custom project to consume "Speech to chatgpt (BackEnd)" project service, Send audio prompt, which is processed in chagpt and the response is added to the player.
 
 
 ## Build Setup
@@ -12,7 +12,7 @@ git clone https://github.com/netryno/Speech-to-chatgpt-frontEnd.git
 
 cd Speech-to-chatgpt-frontEnd/
 
-nvm use 8.16.1
+nvm use 8.10.0
 
 # install dependencies
 npm install

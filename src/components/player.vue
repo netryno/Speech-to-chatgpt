@@ -134,7 +134,19 @@
 
       this.$eventBus.$on('remove-record', () => {
         this._resetProgress()
+      });
+
+      //Add by paul
+      this.$eventBus.$on('click-play', () => {
+
+        let my = this;
+        setTimeout(function(){
+          my.playback();
+        }, 1000);
+
       })
+
+
     },
     computed: {
       audioSource () {

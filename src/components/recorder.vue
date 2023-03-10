@@ -305,9 +305,15 @@
           this.failedUpload && this.failedUpload(msg.response)
         }
       })
-
+      //Add by paul
       this.$eventBus.$on('add-recc', (recc) => {
-        this.recordList.push(recc)
+        //add to list response of back
+        this.recordList.push(recc);
+        //select last respons of back
+        this.choiceRecord(recc);
+        //Play audio select
+        this.$eventBus.$emit('click-play' );
+
       })
 
     },
