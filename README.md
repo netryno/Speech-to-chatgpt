@@ -1,4 +1,4 @@
-## Speech-to-chatgpt
+## Speech to chatgpt (FrontEnd)
 
 
 Custom project to consume X project service, Send audio prompt, which is processed in chagpt and the response is added to the player.
