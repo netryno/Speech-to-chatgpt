@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  <icon-button name="save" class="ar-icon ar-icon__xs ar-icon--no-border" @click.native="upload"/>
+  <icon-button name="chat_gpt" class="ar-icon ar-icon__xs ar-icon--no-border" @click.native="upload"/>
 </template>
 
 <script>
