@@ -7,7 +7,7 @@
 
 <template>
   <div class="row">
-    <div class="toggle" @click="toggle">TOGGLE</div>
+    <div class="toggle" @click="toggle">Min</div>
 
     <audio-recorder v-if="showRecorder"
       upload-url="http://localhost:8003/process_audio"

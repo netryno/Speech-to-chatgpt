@@ -7,12 +7,14 @@
     box-shadow: 0 4px 18px 0 rgba(0,0,0,0.17);
     position: relative;
     box-sizing: content-box;
-
+    margin: 0 auto;
     &-content {
       padding: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      background: #239b79;
+      border-radius: 10px;
     }
 
     &-records {
@@ -114,7 +116,8 @@
     }
 
     &__text {
-      color: rgba(84,84,84,0.5);
+      color: #ededed;
+      
       font-size: 16px;
     }
 
@@ -179,18 +182,229 @@
   }
 
   @import '../scss/icons';
+
+
+  .ar-records__record--selected .ar__text{
+    color: #505050;
+  }
+
+
+  @property --value {
+    syntax: "<angle>";
+    inherits: true;
+    initial-value: 0deg;
+  }
+  @property --width-ratio {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+  @property --scale {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+  }
+  :root {
+    --width: 0.5vmin;
+    --duration: 7s;
+    --size: 50vmin;
+    --logo: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNDAuNTgxIiBoZWlnaHQ9IjU3Ljg0NiIgdmlld0JveD0iMCAwIDQwLjU4MSA1Ny44NDYiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSIwLjkxMSIgeTE9IjAuMDgyIiB4Mj0iMC4xODUiIHkyPSIwLjkxIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2UyMDBmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuMTA3IiBzdG9wLWNvbG9yPSIjZWVhM2Y3Ii8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC40NDMiIHN0b3AtY29sb3I9IiNlMWQwZTMiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU3NiIgc3RvcC1jb2xvcj0iI2ZmZiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM4N2NjZjAiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGlkPSJQYXRoXzEiIGRhdGEtbmFtZT0iUGF0aCAxIiBkPSJNOTMzLjYxMyw2OTkuNDkybC0zMS40NTMsMzEuODVoMjAuMzA4bC0xOC43OCwyNiwzOS4wNTMtMzQuNzk1SDkyMS4wN1oiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05MDIuMTU5IC02OTkuNDkyKSIgZmlsbD0idXJsKCNsaW5lYXItZ3JhZGllbnQpIi8+Cjwvc3ZnPgoK");
+  }
+  @supports not (background: paint(foo)) {
+    :root {
+      --duration: 4s;
+    }
+  }
+
+  .rings {
+    width: 190px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    position: relative;
+    perspective: 190px;
+    margin: 0 auto;
+    margin-top: 10%;
+  }
+  .rings:before, .rings:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: red;
+    border-radius: 50%;
+    --width-ratio: 1;
+    border: calc(var(--width) * var(--width-ratio)) solid transparent;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    background: conic-gradient(from calc(var(--value) * 3), #ff8c41, transparent, #6666d2, #bb2727, #3d9a7f, transparent, transparent, #00a8ff, transparent, magenta, yellow, orange, transparent, transparent, transparent) border-box;
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    --start: 180deg;
+    --value: var(--start);
+    --scale: 1;
+    transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+  }
+  @supports (background: paint(foo)) {
+    .rings:before, .rings:after {
+      -webkit-animation: ring var(--duration) ease-in-out infinite;
+              animation: ring var(--duration) ease-in-out infinite;
+    }
+  }
+  @supports not (background: paint(foo)) {
+    .rings:before, .rings:after {
+      -webkit-animation: ring-legacy var(--duration) ease-in-out infinite;
+              animation: ring-legacy var(--duration) ease-in-out infinite;
+    }
+  }
+  .rings:before {
+    --start: 180deg;
+  }
+  .rings:after {
+    --start: 90deg;
+  }
+  .rings > .rings:before {
+    --start: 360deg;
+  }
+  .rings > .rings:after {
+    --start: 270deg;
+  }
+
+  @-webkit-keyframes ring {
+    from {
+      --value: var(--start);
+      --scale: 1;
+    }
+    50% {
+      --scale: 1.2;
+      --width-ratio: 1.5;
+    }
+    70% {
+      --scale: 1;
+      --value: calc(var(--start) + 180deg);
+      --width-ratio: 1;
+    }
+    80% {
+      --scale: 1.2;
+      --width-ratio: 1.5;
+    }
+    to {
+      --value: calc(var(--start) + 360deg);
+      --scale: 1;
+      --width-ratio: 1;
+    }
+  }
+
+  @keyframes ring {
+    from {
+      --value: var(--start);
+      --scale: 1;
+    }
+    50% {
+      --scale: 1.2;
+      --width-ratio: 1.5;
+    }
+    70% {
+      --scale: 1;
+      --value: calc(var(--start) + 180deg);
+      --width-ratio: 1;
+    }
+    80% {
+      --scale: 1.2;
+      --width-ratio: 1.5;
+    }
+    to {
+      --value: calc(var(--start) + 360deg);
+      --scale: 1;
+      --width-ratio: 1;
+    }
+  }
+  @-webkit-keyframes ring-legacy {
+    from {
+      --value: var(--start);
+      --scale: 1;
+      transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+    }
+    70% {
+      --scale: 1.2;
+      --value: calc(var(--start) + 180deg);
+      transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+    }
+    to {
+      --value: calc(var(--start) + 360deg);
+      --scale: 1;
+      transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+    }
+  }
+  @keyframes ring-legacy {
+    from {
+      --value: var(--start);
+      --scale: 1;
+      transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+    }
+    70% {
+      --scale: 1.2;
+      --value: calc(var(--start) + 180deg);
+      transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+    }
+    to {
+      --value: calc(var(--start) + 360deg);
+      --scale: 1;
+      transform: rotateY(var(--value)) rotateX(var(--value)) rotateZ(var(--value)) scale(var(--scale));
+    }
+  }
+  .logo {
+    display: grid;
+    place-items: center;
+    position: absolute;
+    inset: 0;
+    filter: drop-shadow(0 0 1.5vmin rgba(138, 205, 240, 0.8));
+    display: grid;
+    place-items: center;
+    background: var(--logo) center center no-repeat;
+    background-size: calc(var(--size) / 3.1);
+  }
+
+  .demo {
+    z-index: 10;
+    display: block;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+    background: radial-gradient(at center, #11111173, #000000cc);
+    position: absolute;
+    border-radius: 15px;
+  }
+
+
+
+
 </style>
 
 <template>
   <div class="ar">
-    <div class="ar__overlay" v-if="isUploading"></div>
-    <div class="ar-spinner" v-if="isUploading">
-      <div class="ar-spinner__dot"></div>
-      <div class="ar-spinner__dot"></div>
-      <div class="ar-spinner__dot"></div>
+
+  
+    <div class="demo" v-if="isUploading">
+      <div class="rings">
+        <div class="rings">
+        </div>
+      </div>
     </div>
 
-    <div class="ar-content" :class="{'ar__blur': isUploading}">
+    <!----
+      <div class="ar__overlay" v-if="isUploading"></div>
+
+
+      <div class="ar-spinner" v-if="isUploading">
+
+        <div class="ar-spinner__dot"></div>
+        <div class="ar-spinner__dot"></div>
+        <div class="ar-spinner__dot"></div>
+      </div>
+    -->
+
+
+
+    <div class="ar-content" >
       <div class="ar-recorder">
         <icon-button
           class="ar-icon ar-icon__lg"
@@ -221,7 +435,7 @@
               class="ar__rm"
               v-if="record.id === selected.id"
               @click="removeRecord(idx)">&times;</div>
-            <div class="ar__text">Audio {{idx + 1}}</div>
+            <div class="ar__text">{{ record.nombre  }} {{idx + 1}}</div>
             <div class="ar__text">{{record.duration}}</div>
 
             <downloader
@@ -291,6 +505,10 @@
       Uploader
     },
     mounted () {
+      console.log(`"${process.env.VUE_APP_ENV}"`, 'hay alguien con vida?')
+      console.log(process.env.VUE_APP_ENV)
+
+      //this.isUploading = true
       this.$eventBus.$on('start-upload', () => {
         this.isUploading = true
         this.beforeUpload && this.beforeUpload('before upload')

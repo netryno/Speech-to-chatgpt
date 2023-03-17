@@ -74,6 +74,7 @@ export default class {
     }
 
     record.duration = convertTimeMMSS(this.duration)
+    record.nombre='Pregunta'
     this.records.push(record)
 
     this._duration = 0

@@ -20,7 +20,7 @@
     },
     methods: {
       async upload_fff () {
-        console.log('llegandoo hasta aquiiii');
+
  
         if (!this.record.url) {
           return
@@ -45,7 +45,7 @@
         if (!this.record.url) {
           return
         }
-        console.log('uploadin');
+
         let base64 = await this.convertBlobToBase64(this.record.blob);
         this.$eventBus.$emit('start-upload');
         const response = await axios.post('http://localhost:8003/process_audio', { audio_b64: base64 });
@@ -69,7 +69,8 @@
           blob:blob,
           duration:"00:04",
           id: randomNumber,
-          url:url
+          url:url,
+          nombre:'Respuesta'
         };
         this.$eventBus.$emit('add-recc',rec )
 

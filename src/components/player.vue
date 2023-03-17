@@ -42,7 +42,7 @@
     }
 
     &__time {
-      color: rgba(84,84,84,0.5);
+      color: ffffff;
       font-size: 16px;
       width: 41px;
     }
