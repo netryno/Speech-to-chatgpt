@@ -18,6 +18,22 @@
     components: {
       IconButton
     },
+    data () {
+      return {
+        trabajando   : true,
+      }
+    },    
+    mounted: function() {
+      //Add by paul
+      this.$eventBus.$on('click-gpt', (id) => {
+        //solo enviar el que corresponda
+        if(this.record.id == id){
+          this.upload();
+        }
+      })
+
+
+    },
     methods: {
       async upload_fff () {
 
@@ -42,10 +58,11 @@
   
       },
       async upload () {
+
         if (!this.record.url) {
           return
         }
-
+        console.log('CONSUMIENDO SERVICIO GPT')
         let base64 = await this.convertBlobToBase64(this.record.blob);
         this.$eventBus.$emit('start-upload');
         const response = await axios.post('http://localhost:8003/process_audio', { audio_b64: base64 });

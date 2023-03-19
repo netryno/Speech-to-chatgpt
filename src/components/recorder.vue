@@ -417,7 +417,7 @@
         <icon-button
           class="ar-icon ar-icon__sm ar-recorder__stop"
           name="stop"
-          @click.native="stopRecorder"/>
+          @click.native="stopRecorderAndContinue"/>
       </div>
 
       <div class="ar-recorder__records-limit" v-if="attempts">Intentos: {{attemptsLeft}}/{{attempts}}</div>
@@ -426,6 +426,7 @@
 
       <div class="ar-records">
         <div
+          v-if="recordList.length>0"
           class="ar-records__record"
           :class="{'ar-records__record--selected': record.id === selected.id}"
           :key="record.id"
@@ -445,7 +446,7 @@
               :filename="filename"/>
 
             <uploader
-              v-if="record.id === selected.id && showUploadButton"
+              v-if="record.id === selected.id && showUploadButton  && record.nombre !='Respuesta'"
               class="ar__uploader"
               :record="record"
               :filename="filename"
@@ -531,7 +532,6 @@
         this.choiceRecord(recc);
         //Play audio select
         this.$eventBus.$emit('click-play' );
-
       })
 
     },
@@ -539,15 +539,25 @@
       this.stopRecorder()
     },
     methods: {
+      vaciarTodo(){
+        this.recordList.splice(0, this.recordList.length);
+
+        this.$eventBus.$emit('remove-record')
+        this.selected={}
+        this.recorder = this._initRecorder()
+      },
       toggleRecorder () {
         if (this.attempts && this.recorder.records.length >= this.attempts) {
           return
         }
 
         if (!this.isRecording || (this.isRecording && this.isPause)) {
+          this.vaciarTodo()
           this.recorder.start()
         } else {
-          this.recorder.pause()
+          //this.recorder.pause()
+          //enviar a gpt
+          this.stopRecorderAndContinue()
         }
       },
       stopRecorder () {
@@ -557,6 +567,38 @@
 
         this.recorder.stop()
         this.recordList = this.recorder.recordList()
+      },
+      stopRecorderAndContinue(){
+        console.log('PASO 1 STOPPPP')
+
+
+        if (!this.isRecording) {
+          this.vaciarTodo()
+          return
+        }else{
+          this.recorder.stop()
+          this.recordList = this.recorder.recordList()
+        }
+
+        //seleccionamos y enviamos a gpt
+        
+        if(this.recordList.length>0){
+            this.choiceRecord( this.recordList[0] );
+            //Play audio select
+            /*
+            let my = this;
+            setTimeout(function(){
+              console.log('PASO 2 STOPPPP' )
+              my.$eventBus.$emit('click-gpt', my.recordList[0].id );
+            }, 1000);
+            */
+  
+            this.$nextTick(() => {
+              this.$eventBus.$emit('click-gpt', this.recordList[0].id );
+            });
+          
+        }
+
       },
       removeRecord (idx) {
         this.recordList.splice(idx, 1)

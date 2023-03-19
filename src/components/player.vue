@@ -138,12 +138,10 @@
 
       //Add by paul
       this.$eventBus.$on('click-play', () => {
-
         let my = this;
         setTimeout(function(){
           my.playback();
         }, 1000);
-
       })
 
 
