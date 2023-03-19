@@ -62,7 +62,7 @@
         if (!this.record.url) {
           return
         }
-        console.log('CONSUMIENDO SERVICIO GPT')
+   
         let base64 = await this.convertBlobToBase64(this.record.blob);
         this.$eventBus.$emit('start-upload');
         const response = await axios.post('http://localhost:8003/process_audio', { audio_b64: base64 });
@@ -92,7 +92,7 @@
         this.$eventBus.$emit('add-recc',rec )
 
         this.$eventBus.$emit('end-upload', { status: 'success', response: 'okkkk' });
-        console.log(response);
+        //console.log(response);
       },
       convertBlobToBase64(blob){
         return new Promise((resolve, reject) => {

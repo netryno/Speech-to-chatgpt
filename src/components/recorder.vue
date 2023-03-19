@@ -569,9 +569,6 @@
         this.recordList = this.recorder.recordList()
       },
       stopRecorderAndContinue(){
-        console.log('PASO 1 STOPPPP')
-
-
         if (!this.isRecording) {
           this.vaciarTodo()
           return
@@ -585,14 +582,6 @@
         if(this.recordList.length>0){
             this.choiceRecord( this.recordList[0] );
             //Play audio select
-            /*
-            let my = this;
-            setTimeout(function(){
-              console.log('PASO 2 STOPPPP' )
-              my.$eventBus.$emit('click-gpt', my.recordList[0].id );
-            }, 1000);
-            */
-  
             this.$nextTick(() => {
               this.$eventBus.$emit('click-gpt', this.recordList[0].id );
             });
