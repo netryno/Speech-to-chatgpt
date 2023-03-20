@@ -4,6 +4,9 @@
   "version": "3.0.1",
   "author": "Gennady Grishkovtsov, custom by Paul",
   "license": "MIT",
+  "engines": {
+    "node": "8.10.0"
+  },
   "scripts": {
     "dev": "webpack-dev-server --env.NODE_ENV=development --mode development --open --hot --https",
     "build": "webpack --env.NODE_ENV=production --mode production --progress --hide-modules",
