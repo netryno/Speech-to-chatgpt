@@ -513,9 +513,6 @@
       Uploader
     },
     mounted () {
-      console.log(`"${process.env.VUE_APP_API}"`, 'hay alguien con vida?')
-      console.log(process.env.VUE_APP_API)
-
       //this.isUploading = true
       this.$eventBus.$on('start-upload', () => {
         this.isUploading = true

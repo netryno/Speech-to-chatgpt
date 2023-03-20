@@ -65,7 +65,9 @@
    
         let base64 = await this.convertBlobToBase64(this.record.blob);
         this.$eventBus.$emit('start-upload');
-        const response = await axios.post('http://localhost:8003/process_audio', { audio_b64: base64 });
+        console.log(`"${process.env.VUE_APP_API}"`, 'api gpt')
+        let api = process.env.VUE_APP_API //'http://localhost:8003/process_audio'
+        const response = await axios.post(api, { audio_b64: base64 });
 
         console.log('prompt', response.data.prompt)
         console.log('chatgpt_respuesta', response.data.chatgpt_respuesta)
