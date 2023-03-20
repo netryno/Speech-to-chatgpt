@@ -93,7 +93,7 @@
         };
         this.$eventBus.$emit('add-recc',rec )
 
-        this.$eventBus.$emit('end-upload', { status: 'success', response: 'okkkk' });
+        this.$eventBus.$emit('end-upload', { status: 'success', response: '' });
         //console.log(response);
       },
       convertBlobToBase64(blob){

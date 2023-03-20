@@ -382,6 +382,10 @@
     font-size: 9px;
     text-align: right;
     color: white;
+    a{
+      color: white;
+      font-weight: bold;
+    }
   }  
 </style>
 
@@ -462,7 +466,7 @@
       </div>
 
       <audio-player :record="selected"/>
-      <p class="copyright">Custom by: @netryno</p>
+      <p class="copyright">Custom by: <a href="https://www.linkedin.com/in/netryno/" target="_blank">@netryno</a></p>
     </div>
   </div>
 </template>
