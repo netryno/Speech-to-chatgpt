@@ -376,7 +376,13 @@
 
 
 
-
+  .copyright{
+    display: block;
+    width: 100%;
+    font-size: 9px;
+    text-align: right;
+    color: white;
+  }  
 </style>
 
 <template>
@@ -456,6 +462,7 @@
       </div>
 
       <audio-player :record="selected"/>
+      <p class="copyright">Custom by: @netryno</p>
     </div>
   </div>
 </template>
@@ -506,8 +513,8 @@
       Uploader
     },
     mounted () {
-      console.log(`"${process.env.VUE_APP_ENV}"`, 'hay alguien con vida?')
-      console.log(process.env.VUE_APP_ENV)
+      console.log(`"${process.env.VUE_APP_API}"`, 'hay alguien con vida?')
+      console.log(process.env.VUE_APP_API)
 
       //this.isUploading = true
       this.$eventBus.$on('start-upload', () => {

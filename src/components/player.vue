@@ -64,6 +64,7 @@
     }
   }
 
+
   @import '../scss/icons';
 </style>
 
@@ -90,6 +91,8 @@
     </div>
 
     <audio :id="playerUniqId" :src="audioSource"></audio>
+
+   
   </div>
 </template>
 

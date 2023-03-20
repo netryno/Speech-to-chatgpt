@@ -3,6 +3,7 @@
     cursor: pointer;
     margin: 20px;
   }
+
 </style>
 
 <template>
@@ -26,6 +27,7 @@
       :bit-rate="192"/>
 
     <audio-player :src="mp3" v-if="!showRecorder"/>
+    
   </div>
 </template>
 

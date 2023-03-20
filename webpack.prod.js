@@ -1,11 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Dotenv = require('dotenv-webpack');
 module.exports = {
   devtool: '#source-map',
   entry: {
-    main: './src/index.js'
+    main: './demo/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -30,8 +31,13 @@ module.exports = {
         NODE_ENV: '"production"'
       }
     }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './demo/index.html'
+    }),    
     new webpack.LoaderOptionsPlugin({
       minimize: false
-    })
+    }),
+    new Dotenv(),
   ]
 }
